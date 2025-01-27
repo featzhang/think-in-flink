@@ -1,32 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.github.featzhang</groupId>
-  <artifactId>think-in-flink</artifactId>
-  <version>1.0-SNAPSHOT</version>
+    <groupId>com.github.featzhang</groupId>
+    <artifactId>think-in-flink</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
-  <name>ThinkInFlink:</name>
-  <packaging>pom</packaging>
+    <name>ThinkInFlink:</name>
 
-  <modules>
-    <module>pekko-demo</module>
-  </modules>
+    <modules>
+        <module>pekko-demo</module>
+    </modules>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
-  </properties>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
 
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.11</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>com.diffplug.spotless</groupId>
+                    <artifactId>spotless-maven-plugin</artifactId>
+                    <version>2.44.2</version>
+                    <!-- 请检查最新版本 -->
+                    <configuration>
+                        <java>
+                            <googleJavaFormat>
+                                <version>1.25.0</version>
+                                <style>AOSP</style>
+                            </googleJavaFormat>
+                        </java>
+                        <pom>
+                            <sortPom>
+                                <encoding>UTF-8</encoding>
+                                <nrOfIndentSpace>4</nrOfIndentSpace>
+                                <keepBlankLines>true</keepBlankLines>
+                                <indentBlankLines>false</indentBlankLines>
+                                <indentSchemaLocation>true</indentSchemaLocation>
+                                <spaceBeforeCloseEmptyElement>true</spaceBeforeCloseEmptyElement>
+                                <sortModules>false</sortModules>
+                                <sortExecutions>false</sortExecutions>
+                                <predefinedSortOrder>custom_1</predefinedSortOrder>
+                                <expandEmptyElements>false</expandEmptyElements>
+                                <sortProperties>false</sortProperties>
+                            </sortPom>
+                        </pom>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>apply</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 </project>
